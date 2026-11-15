@@ -70,11 +70,15 @@ class SpeechEngine(
 
         val bpeVocabFile = File(modelDir, "bpe.vocab")
         val useHotwords = bpeVocabFile.exists() && hotwordsFile != null && hotwordsFile.exists()
+        val decoderFile =
+            File(modelDir, "decoder-epoch-99-avg-1.int8.onnx")
+                .takeIf { it.isFile }
+                ?: File(modelDir, "decoder-epoch-99-avg-1.onnx")
 
         val model = OnlineModelConfig(
             transducer = OnlineTransducerModelConfig(
                 encoder = File(modelDir, "encoder-epoch-99-avg-1.int8.onnx").absolutePath,
-                decoder = File(modelDir, "decoder-epoch-99-avg-1.int8.onnx").absolutePath,
+                decoder = decoderFile.absolutePath,
                 joiner = File(modelDir, "joiner-epoch-99-avg-1.int8.onnx").absolutePath,
             ),
             tokens = File(modelDir, "tokens.txt").absolutePath,
