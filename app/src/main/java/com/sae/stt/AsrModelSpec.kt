@@ -29,7 +29,7 @@ enum class AsrModelSpec(
         modelType = "zipformer",
         files = listOf(
             ModelFileSpec("encoder-epoch-99-avg-1.int8.onnx", 150_000_000L, 179_000_000L),
-            ModelFileSpec("decoder-epoch-99-avg-1.int8.onnx", 900_000L, 1_200_000L),
+            ModelFileSpec("decoder-epoch-99-avg-1.onnx", 900_000L, 1_200_000L),
             ModelFileSpec("joiner-epoch-99-avg-1.int8.onnx", 200_000L, 253_000L),
             ModelFileSpec("tokens.txt", 4_000L, 5_048L),
         ),
